@@ -1,0 +1,31 @@
+run.config:
+  engine: ruby
+  extra_packages:
+    - nginx
+    - nodejs
+    - pkgconf
+    - libxml2
+    - libxslt
+
+web.main:
+  start:
+    nginx: nginx -c /app/config/nginx.conf
+    puma: bundle exec puma -C /app/config/puma.rb
+
+  writable_dirs:
+    - tmp
+    - log
+    - db
+    - /app/cache
+    - public
+
+  log_watch:
+    rails: /app/log/production.log
+
+deploy.config:
+  before_live:
+    web.main:
+      - rake db:setup_or_migrate
+
+data.db:
+  image: nanobox/postgresql:9.6
