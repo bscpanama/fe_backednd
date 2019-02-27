@@ -14,6 +14,7 @@ gem 'jwt', '~> 2.1'
 gem 'oj', '3.7.8'
 gem 'fast_jsonapi', '1.5'
 gem 'chartable'
+gem 'will_paginate', '~> 3.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

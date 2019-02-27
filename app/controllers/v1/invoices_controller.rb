@@ -3,7 +3,7 @@ module V1
     before_action :set_invoice, only: [:show, :update, :destroy]
 
     def index
-      @invoices = Invoice.where(user: current_user)
+      @invoices = Invoice.where(user: current_user).paginate(page: params[:page], per_page: 8)
       json_response(@invoices)
     end
 
