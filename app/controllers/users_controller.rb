@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   skip_before_action :authorize_request, only: :create
   def create
     user = User.create!(user_params)
-    auth_token = AuthenticateUser.new(user.email, user.password).call
-    response = { message: Message.account_created, auth_token: auth_token }
+    auth_data = AuthenticateUser.new(user.email, user.password).call
+    response = { message: Message.account_created, auth_data: auth_data }
     json_response(response, :created)
   end
 

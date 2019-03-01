@@ -3,7 +3,7 @@ module V1
     before_action :valid_query, only: :index
 
     def index
-      @stats = Invoice.where(user: current_user).analytics(search_params[:query].to_sym)
+      @stats = Document.where(user: current_user).analytics(search_params[:query].to_sym)
       json_response(@stats)
     end
 
