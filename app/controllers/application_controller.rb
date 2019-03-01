@@ -8,6 +8,14 @@ class ApplicationController < ActionController::API
 
   private
 
+  def admin?
+   if  current_user.class.name != "Admin"
+    raise ExceptionHandler::AuthenticationError
+   else
+     true
+   end
+  end
+
   # Check for valid request token and return user
   def authorize_request
     @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
