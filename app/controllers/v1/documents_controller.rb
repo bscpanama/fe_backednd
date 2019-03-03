@@ -33,7 +33,7 @@ module V1
     end
 
     def set_document
-      @document = Document.where("user = ? && id = ?", current_user, params[:id]).first
+      @document = Document.where(user: current_user).where(id: params[:id]).first
     end
 
     def document_query
