@@ -20,7 +20,10 @@ class PdfService
       parameters: {
         html: html.to_str,
         inlinePdf: true,
-        fileName: file_name
+        fileName: file_name,
+        options: {
+          pageSize: "Letter"
+        }
       }.to_json
   end
 end
