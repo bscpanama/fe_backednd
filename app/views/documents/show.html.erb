@@ -209,14 +209,14 @@
 	 		<div id="client-info">
 	 			<div id="f-phrase">Comprobante Impreso de Factura Electr&oacute;nica</div>
 	 			<div id="e-data">
-	 				<span>Raz&oacute;n social del emisor</span>
-	 				<span>RUC del Emisor</span>
-	 				<span>Direcci&oacute;n Emisor</span>
+                                  <span>Raz&oacute;n social del emisor: <%= data.razon_social %></span>
+	 				<span>RUC del Emisor: <%= data.ruc %></span>
+                                        <span>Direcci&oacute;n Emisor: <%= data.direccion_del_emisor %> </span>
 	 			</div>
 	 			<div id="c-data">
-	 				<span>Cliente: [nombre/raz&oacute;n social del cliente]</span>
-	 				<span>RUC/CI: [RUC/C&eacute;dula del cliente]</span>
-	 				<span>Direcci&oacute;n Cliente</span>
+                                  <span>Cliente: <%= data.cliente %></span>
+                                  <span>RUC/CI: <%= data.ruc_cedula_cliente %></span>
+                                  <span>Direcci&oacute;n Cliente: <%= data.direccion_cliente %></span>
 	 			</div>
 	 		</div>
 	 		<div id="qr-code">
@@ -225,14 +225,14 @@
 	 	</div>
 	 	<div id="invoice-data">
 	 		<div id="invoice-info">
-	 			<div id="number">N&uacute;mero <span>000000000</span> <span>Serie 000</span></div>
-	 			<div id="date">Fecha de emisi&oacute;n</div>
+                          <div id="number">N&uacute;mero <span><%= data.numero_factura %></span> <span>Serie <%= data.serie %></span></div>
+                          <div id="date">Fecha de emisi&oacute;n: <%= data.fecha_de_emision %></div>
 	 			<div id="pagenumb">Hoja 0 de 0</div>
 	 		</div>
 	 		<div id="extra">
 	 			<span>Consulte por la clave de acceso en http://fe.dgi.mef.pa/consulta:</span>
 	 			<span>00000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000 000</span>
-	 			<span>Protocolo de autorizaci&oacute;n: 0000000000, de dd/mm/aaaa hh:mm:ss </span>
+                                <span>Protocolo de autorizaci&oacute;n: <%= data.protocolo_de_autorizacion %>, de <%= data.fecha_de_protocolo %> </span>
 	 		</div>
 	 	</div>
 	 	<div id="table-content">
@@ -248,206 +248,31 @@
 	 					<th width="10%" align="right">Vlr Item</th>
 	 				</tr>
 	 			</thead>
-	 			<tbody>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 				<tr>
-	 					<td width="10%">&nbsp;</td>
-	 					<td width="40%"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 					<td width="10%" align="right"></td>
-	 				</tr>
-	 			</tbody>
+                                <tbody>
+                                  <% empty_items = 22 - data.items.count %>
+                                  <% data.items.each do |item| %>
+                                    <tr>
+                                      <td width="10%">&nbsp;<%= item['codigo'] %></td>
+                                      <td width="40%"><%= item['descripcion'] %></td>
+                                      <td width="10%" align="right"><%= item['unid'] %></td>
+                                      <td width="10%" align="right"><%= item['vlr_unit'] %></td>
+                                      <td width="10%" align="right"><%= item['cantidad'] %></td>
+                                      <td width="10%" align="right"><%= item['ITBMS'] %></td>
+                                      <td width="10%" align="right"><%= item['vlr_item'] %></td>
+                                    </tr>
+                                  <% end %>
+                                  <% (1..empty_items).to_a.each do %>
+                                    <tr>
+                                      <td width="10%">&nbsp;</td>
+                                      <td width="40%"></td>
+                                      <td width="10%" align="right"></td>
+                                      <td width="10%" align="right"></td>
+                                      <td width="10%" align="right"></td>
+                                      <td width="10%" align="right"></td>
+                                      <td width="10%" align="right"></td>
+                                    </tr>
+                                  <% end %>
+                                </tbody>
 	 			<tfoot>
 	 				<tr>
 	 					<td colspan="4" align="right">Suma</td>
@@ -457,19 +282,19 @@
 	 				</tr>
 	 				<tr>
 	 					<td colspan="6" align="right">Descuento</td>
-	 					<td></td>
+                                                <td><%= data.descuento %></td>
 	 				</tr>
 	 				<tr>
 	 					<td colspan="6" align="right">Valor pago</td>
-	 					<td></td>
+                                                <td><%= data.valor_pago %></td>
 	 				</tr>
 	 				<tr>
-	 					<td colspan="6" align="right">Forma de pago: xxxxxxxx</td>
-	 					<td></td>
+	 					<td colspan="6" align="right">Forma de pago: <%= data.forma_de_pago %></td>
+                                                <td></td>
 	 				</tr>
 	 				<tr>
 	 					<td colspan="6" align="right">Vuelto</td>
-	 					<td></td>
+                                                <td><%= data.vuelto %></td>
 	 				</tr>
 	 			</tfoot>
 	 		</table>

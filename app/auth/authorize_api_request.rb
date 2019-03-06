@@ -18,7 +18,8 @@ class AuthorizeApiRequest
     # check if user is in the database
     # memoize user object
     @user ||= if decoded_auth_token
-                User.find(decoded_auth_token[:user_id]) || Admin.find(decoded_auth_token[:user_id])
+                user_class = decoded_auth_token[:user_type].constantize
+                user_class.find(decoded_auth_token[:user_id])
               end
 
     # handle user not found
