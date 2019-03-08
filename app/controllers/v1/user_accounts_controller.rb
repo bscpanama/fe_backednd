@@ -23,7 +23,7 @@ module V1
     end
 
     def update
-      @user = User.update(user_params)
+      @user.update(user_params)
       head :no_content
     end
 
@@ -31,9 +31,8 @@ module V1
 
   def user_params
     params.permit(
+      :id,
       :email,
-      :password,
-      :password_confirmation,
       account_attributes: [
       :name,
       :last_name,

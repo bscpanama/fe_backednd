@@ -1,6 +1,6 @@
 module V1
   class DocumentsController < ApplicationController
-    before_action :set_document, only: [:show, :update, :destroy]
+    before_action :set_document, only: :show
 
     def index
       @documents = document_query.paginate(page: params[:page], per_page: 8)
@@ -14,16 +14,6 @@ module V1
 
     def show
       json_response(@document)
-    end
-
-    def destroy
-      @document.destroy
-      head :no_content
-    end
-
-    def update
-      @document = Document.update(document_params)
-      head :no_content
     end
 
     private
