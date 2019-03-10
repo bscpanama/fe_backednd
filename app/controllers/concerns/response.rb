@@ -6,10 +6,11 @@ module Response
     response_object = if class_name == "Hash"
                object
              else
+               serializer_class = (class_name + "Serializer").constantize
                options = {}
                options[:is_collection] = nil
-               serializer_class = class_name + "Serializer"
-               serializer_class.constantize.new(object, options).serialized_json
+               options[:meta] = [pages: (class_name.constantize.count)/8.ceil]
+               serializer_class.new(object, options).serialized_json
              end
     render json: response_object, status: status
   end

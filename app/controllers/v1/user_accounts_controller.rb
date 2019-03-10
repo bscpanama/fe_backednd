@@ -33,6 +33,8 @@ module V1
     params.permit(
       :id,
       :email,
+      :password,
+      :password_confirmation,
       account_attributes: [
       :name,
       :last_name,
