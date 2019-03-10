@@ -1,5 +1,10 @@
 module V1
   class DocumentsController < ApplicationController
+    has_scope :by_status
+    has_scope :by_date
+    has_scope :by_period
+    has_scope :by_days
+
     before_action :set_document, only: :show
 
     def index
@@ -27,7 +32,7 @@ module V1
     end
 
     def document_query
-      current_user.kind_of?(Admin) ? Document.all : Document.where(user: current_user)
+      current_user.kind_of?(Admin) ? apply_scopes(Document).all : apply_scopes(Document).where(user: current_user)
     end
   end
 end
