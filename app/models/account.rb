@@ -1,6 +1,15 @@
 class Account < ApplicationRecord
+  PLAN = { 1 => 30, 2 => 90, 3 => 180, 4 => 365}
+
   has_one_attached :avatar
   belongs_to :user
 
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..2.megabytes }
+  validates_presence_of :plan_id
+
+  before_create :set_expiration
+
+  def set_expiration
+    self.expiration_date = PLAN[plan_id].days.from_now
+  end
 end

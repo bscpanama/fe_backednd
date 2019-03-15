@@ -38,11 +38,13 @@ module V1
         :password,
         :password_confirmation,
         account_attributes: [
+          :id,
           :name,
           :last_name,
           :phone_number,
           :mobile_number,
-          :avatar
+          :avatar,
+          :plan_id
         ]
       )
     end
