@@ -16,6 +16,8 @@ gem 'fast_jsonapi', '1.5'
 gem 'chartable'
 gem 'will_paginate', '~> 3.1.0'
 gem 'unirest'
+gem "aws-sdk-s3", require: false
+gem 'activestorage-validator'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -2,6 +2,7 @@ module V1
   class UserAccountsController < ApplicationController
     before_action :admin?
     before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_host_for_local_storage
 
     def index
       @users = User.all.paginate(page: params[:page], per_page: 8)
@@ -18,6 +19,7 @@ module V1
     end
 
     def destroy
+      @user.account.avatar.purge
       @user.destroy
       head :no_content
     end
@@ -29,23 +31,28 @@ module V1
 
     private
 
-  def user_params
-    params.permit(
-      :id,
-      :email,
-      :password,
-      :password_confirmation,
-      account_attributes: [
-      :name,
-      :last_name,
-      :phone_number,
-      :mobile_number
-      ]
-    )
-  end
+    def user_params
+      params.permit(
+        :id,
+        :email,
+        :password,
+        :password_confirmation,
+        account_attributes: [
+          :name,
+          :last_name,
+          :phone_number,
+          :mobile_number,
+          :avatar
+        ]
+      )
+    end
 
     def set_user
       @user = User.find_by(id: params[:id])
+    end
+
+    def set_host_for_local_storage
+      ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
     end
 
   end

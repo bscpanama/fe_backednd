@@ -34,13 +34,30 @@ ActiveRecord::Schema.define(version: 2019_02_28_143045) do
   end
 
   create_table "documents", force: :cascade do |t|
-    t.date "date"
-    t.string "number"
-    t.string "document_type"
     t.string "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cufe"
+    t.string "tipo_documento"
+    t.string "documento_relacionado"
+    t.string "razon_social"
+    t.integer "ruc"
+    t.string "direccion_del_emisor"
+    t.string "cliente"
+    t.string "ruc_cedula_cliente"
+    t.string "direccion_cliente"
+    t.integer "numero_factura"
+    t.integer "serie"
+    t.date "fecha_de_emision"
+    t.float "suma"
+    t.float "descuento"
+    t.float "valor_pago"
+    t.string "forma_de_pago"
+    t.float "vuelto"
+    t.bigint "protocolo_de_autorizacion"
+    t.datetime "fecha_de_protocolo"
+    t.json "items"
   end
 
   create_table "users", force: :cascade do |t|
