@@ -22,6 +22,16 @@ web.main:
   log_watch:
     rails: /app/log/production.log
 
+worker.main:
+  start:
+    - bundle exec sidekiq -L /app/log/sidekiq.log
+
+  writable_dirs:
+    - log
+
+  log_watch:
+    delayed: /app/log/sidekiq.log
+
 deploy.config:
   before_live:
     web.main:
@@ -29,3 +39,6 @@ deploy.config:
 
 data.db:
   image: nanobox/postgresql:9.6
+
+data.redis:
+  image: nanobox/redis

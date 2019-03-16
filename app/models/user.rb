@@ -12,6 +12,11 @@ class User < ApplicationRecord
   validates_presence_of :email, :password_digest
   validates_uniqueness_of :email
 
+  enum status: {
+    activo: "activo",
+    inactivo: "inactivo"
+  }
+
   def full_name
     "#{account.name.capitalize} #{account.last_name.capitalize}"
   end

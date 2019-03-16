@@ -16,6 +16,7 @@ module V1
 
     def create
       @user = User.create!(user_params)
+      ExpireAccountJob.set(wait_until: @user.expiration_date).perform_data(@user)
       json_response(@user, :created)
     end
 
