@@ -1,11 +1,16 @@
 module V1
   class UserAccountsController < ApplicationController
+    has_scope :by_status
+    has_scope :by_date
+    has_scope :by_period
+    has_scope :by_days
+
     before_action :admin?
     before_action :set_user, only: [:show, :update, :destroy]
     before_action :set_host_for_local_storage
 
     def index
-      @users = User.all.paginate(page: params[:page], per_page: 8)
+      @users = user_account_query.paginate(page: params[:page], per_page: 8)
       json_response(@users)
     end
 
@@ -57,5 +62,8 @@ module V1
       ActiveStorage::Current.host = request.base_url if Rails.application.config.active_storage.service == :local
     end
 
+    def user_account_query
+      apply_scopes(User).all
+    end
   end
 end
