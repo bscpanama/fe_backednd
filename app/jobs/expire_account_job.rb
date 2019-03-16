@@ -3,6 +3,6 @@ class ExpireAccountJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
 
   def perform(user)
-    user.update(status: "inactivo")
+    user.account.update(status: "inactivo")
   end
 end
