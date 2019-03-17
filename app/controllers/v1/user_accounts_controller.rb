@@ -50,6 +50,8 @@ module V1
           :phone_number,
           :mobile_number,
           :avatar,
+          :status,
+          :company,
           :plan_id
         ]
       )

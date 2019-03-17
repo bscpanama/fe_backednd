@@ -10,24 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_16_023259) do
+ActiveRecord::Schema.define(version: 2019_03_16_044448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: :cascade do |t|
-    t.string "name"
-    t.string "last_name"
-    t.integer "phone_number"
-    t.integer "mobile_number"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "plan_id"
-    t.date "expiration_date"
-    t.string "company"
-    t.string "status"
-  end
+# Could not dump table "accounts" because of following StandardError
+#   Unknown type 'account_statuses' for column 'status'
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
