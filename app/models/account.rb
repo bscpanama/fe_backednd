@@ -12,6 +12,7 @@ class Account < ApplicationRecord
 
   def set_expiration
     self.expiration_date = PLAN[plan_id].days.from_now
+    save
   end
 
   def avatar_url

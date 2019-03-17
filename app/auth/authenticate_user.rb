@@ -9,7 +9,8 @@ class AuthenticateUser
     {
       auth_token: token,
       user_type: user.class.name,
-      user_name: user.full_name
+      user_name: user.full_name,
+      avatar_url: user.account.avatar_url
     }
   end
 

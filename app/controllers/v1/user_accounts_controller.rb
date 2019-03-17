@@ -15,8 +15,10 @@ module V1
     end
 
     def create
-      @user = User.create!(user_params)
-      ExpireAccountJob.set(wait_until: @user.expiration_date).perform_data(@user)
+      new_password = SecureRandom.hex(10)
+      @user = User.create(user_params.merge({password: new_password, password_confirmation: new_password}))
+      ExpireAccountJob.set(wait_until: @user.account.expiration_date.noon).perform_later(@user)
+      UserMailer.new_account(@user, new_password).deliver_now
       json_response(@user, :created)
     end
 
