@@ -18,7 +18,8 @@ class UsersController < ApplicationController
       :name,
       :last_name,
       :phone_number,
-      :mobile_number
+      :mobile_number,
+      :plan_id
       ]
     )
   end
