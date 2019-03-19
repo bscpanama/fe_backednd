@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :documents
-  has_one :account
+  has_many :documents, dependent: :destroy
+  has_one :account, dependent: :destroy
   accepts_nested_attributes_for :account, allow_destroy: true
 
   scope :by_status, -> status { where(status: status) }
