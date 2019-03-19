@@ -10,7 +10,7 @@ class AuthenticateUser
       auth_token: token,
       user_type: user.class.name,
       user_name: user.full_name,
-      avatar_url: user.account.avatar_url
+      avatar_url: user_avatar
     }
   end
 
@@ -28,5 +28,9 @@ class AuthenticateUser
     return user if user && user.authenticate(password)
     # raise Authentication error if credentials are invalid
     raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
+  end
+
+  def user_avatar
+    user.try(:account) ? user.account.avatar_url : "default"
   end
 end
