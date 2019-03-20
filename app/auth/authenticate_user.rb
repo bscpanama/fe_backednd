@@ -25,7 +25,12 @@ class AuthenticateUser
   # verify user credentials
   def user
     user = User.find_by(email: email) || Admin.find_by(email: email)
-    return user if user && user.authenticate(password)
+    return user if user && user.authenticate(password) && user.account.activo?
+    # raise Authentication error if account is inactive
+    if user.account.inactivo?
+      raise(ExceptionHandler::AuthenticationError, "Cuenta Inactiva")
+    end
+
     # raise Authentication error if credentials are invalid
     raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
   end

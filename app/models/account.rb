@@ -1,6 +1,10 @@
 class Account < ApplicationRecord
   PLAN = { 1 => 30, 2 => 90, 3 => 180, 4 => 365}
   attribute :avatar_url, :string
+  enum status: {
+    activo: "activo",
+    inactivo: "inactivo"
+  }
 
   has_one_attached :avatar
   belongs_to :user

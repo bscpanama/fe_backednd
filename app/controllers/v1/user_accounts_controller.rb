@@ -18,7 +18,7 @@ module V1
       new_password = SecureRandom.hex(10)
       @user = User.create(user_params.merge({password: new_password, password_confirmation: new_password}))
       ExpireAccountJob.set(wait_until: @user.account.expiration_date.noon).perform_later(@user)
-      UserMailer.new_account(@user, new_password).deliver_now
+      UserMailer.new_account(@user, new_password).deliver_later
       json_response(@user, :created)
     end
 
@@ -27,7 +27,6 @@ module V1
     end
 
     def destroy
-      @user.account.avatar.purge
       @user.destroy
       head :no_content
     end

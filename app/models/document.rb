@@ -1,6 +1,11 @@
 class Document < ApplicationRecord
   belongs_to :user
 
+  enum status: {
+    activo: "activo",
+    inactivo: "inactivo"
+  }
+
   has_one_attached :documento_xml
   scope :by_status, -> status { where(status: status) }
   scope :by_date, -> fecha_de_emision { where(fecha_de_emision: fecha_de_emision) }
