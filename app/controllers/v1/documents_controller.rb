@@ -14,13 +14,19 @@ module V1
 
 
     def create
-      base64data = Base64Service.new(document_params[:documento_xml])
-      @document = current_user.documents.create!(document_params.except(:documento_xml))
+      document_data = Base64Service.new(document_params[:documento_xml])
+      qrcode_data = Base64Service.new(document_params[:qr_code])
+      @document = current_user.documents.create!(document_params.except(:documento_xml, :qr_code))
       @document.documento_xml.attach(
-        io: base64data.file,
+        io: document_data.file,
         filename: "#{SecureRandom.uuid}.xml"
       )
-      base64data.close
+      @document.qr_code.attach(
+        io: qrcode_data.file,
+        filename: "#{SecureRandom.uuid}.xml"
+      )
+      document_data.close
+      qrcode_data.close
       json_response(@document, :created)
     end
 
@@ -31,7 +37,7 @@ module V1
     private
 
     def document_params
-      params.permit(:cufe, :documento_xml, :tipo_documento, :documento_relacionado, :razon_social, :ruc, :direccion_del_emisor, :cliente, :ruc_cedula_cliente, :direccion_cliente, :numero_factura, :serie, :fecha_de_emision, :suma, :descuento, :valor_pago, :forma_de_pago, :vuelto, :protocolo_de_autorizacion, :fecha_de_protocolo, items: [:codigo, :descripcion, :unid, :vlr_unit, :cantidad, :ITBMS, :vlr_item])
+      params.permit(:cufe, :qr_code, :documento_xml, :tipo_documento, :documento_relacionado, :razon_social, :ruc, :direccion_del_emisor, :cliente, :ruc_cedula_cliente, :direccion_cliente, :numero_factura, :serie, :fecha_de_emision, :suma, :descuento, :valor_pago, :forma_de_pago, :vuelto, :protocolo_de_autorizacion, :fecha_de_protocolo, items: [:codigo, :descripcion, :unid, :vlr_unit, :cantidad, :ITBMS, :vlr_item])
     end
 
     def set_document

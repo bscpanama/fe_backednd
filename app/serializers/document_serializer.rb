@@ -5,4 +5,8 @@ class DocumentSerializer
   attribute :xml_url do |object|
     Rails.application.routes.url_helpers.rails_blob_url(object.documento_xml, only_path: true) if object.documento_xml.attached?
   end
+
+  attribute :qr_code_url do |object|
+    Rails.application.routes.url_helpers.rails_blob_url(object.qr_code, only_path: true) if object.qr_code.attached?
+  end
 end
