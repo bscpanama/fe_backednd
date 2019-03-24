@@ -26,10 +26,10 @@ module V1
       json_response(@user)
     end
 
-    def destroy
-      @user.destroy
-      head :no_content
-    end
+    # def destroy
+    #   @user.destroy
+    #   head :no_content
+    # end
 
     def update
       @user.update(user_params)

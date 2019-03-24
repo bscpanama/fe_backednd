@@ -2,7 +2,7 @@ module V1
   class DocumentsController < ApplicationController
     has_scope :by_status
     has_scope :by_date
-    has_scope :by_period
+    has_scope :by_period, using: %i[started_at ended_at], type: :hash
     has_scope :by_days
 
     before_action :set_document, only: :show
