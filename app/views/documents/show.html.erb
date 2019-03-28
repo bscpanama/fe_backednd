@@ -130,7 +130,6 @@
 		border: 0.05cm solid #000;
 		margin-left: 0.4cm;
 		margin-bottom: 0.2cm;
-		background-color: #000;
 		vertical-align: top;
 	}
 
@@ -220,7 +219,7 @@
 	 			</div>
 	 		</div>
 	 		<div id="qr-code">
-	 		     <%= image_tag(url_for(data.qr_code)) %>
+                          <%= image_tag data.qr_code_base64_data %>
 	 		</div>
 	 	</div>
 	 	<div id="invoice-data">

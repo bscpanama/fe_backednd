@@ -16,16 +16,19 @@ module V1
     def create
       document_data = Base64Service.new(document_params[:documento_xml])
       qrcode_data = Base64Service.new(document_params[:qr_code])
+      base64_qr = document_params[:qr_code]
       @document = current_user.documents.create!(document_params.except(:documento_xml, :qr_code))
       @document.documento_xml.attach(
         io: document_data.file,
         filename: "#{SecureRandom.uuid}.xml"
       )
+      document_data.close
       @document.qr_code.attach(
         io: qrcode_data.file,
-        filename: "#{SecureRandom.uuid}.xml"
+        filename: "#{SecureRandom.uuid}.jpeg"
       )
-      document_data.close
+      @document.qr_code_base64 = base64_qr
+      @document.save
       qrcode_data.close
       json_response(@document, :created)
     end

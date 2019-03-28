@@ -5,8 +5,6 @@ module V1
       @document = Document.find(params[:id])
       result = PdfService.new(ActionController::Base.new.render_to_string('documents/show.html.erb', layout: false, locals: { data: @document}), "test.pdf").convert_from_html
       render json: { pdf: result.body['pdf'], status: :ok }
-      # data = open(result.body['pdf'])
-      # send_data data.read, type: "application/pdf"
     end
   end
 end

@@ -217,7 +217,8 @@ CREATE TABLE public.documents (
     vuelto double precision,
     protocolo_de_autorizacion bigint,
     fecha_de_protocolo timestamp without time zone,
-    items json
+    items json,
+    qr_code_base64 text
 );
 
 
@@ -435,6 +436,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190315060553'),
 ('20190316023259'),
 ('20190316044448'),
-('20190320022023');
+('20190320022023'),
+('20190328052327');
 
 
