@@ -2,8 +2,8 @@ module V1
   class UserAccountsController < ApplicationController
     has_scope :by_status
     has_scope :by_date
-    has_scope :by_period
     has_scope :by_days
+    has_scope :by_period, using: %i[started_at ended_at], type: :hash
 
     before_action :admin?
     before_action :set_user, only: [:show, :update, :destroy]
@@ -11,7 +11,9 @@ module V1
 
     def index
       @users = user_account_query.paginate(page: params[:page], per_page: 8)
-      json_response(@users)
+      options = {}
+      options[:meta] = [pages: @users.count/8.ceil]
+      render json: UserSerializer.new(@users, options).serialized_json
     end
 
     def create

@@ -9,7 +9,9 @@ module V1
 
     def index
       @documents = document_query.paginate(page: params[:page], per_page: 8)
-      json_response(@documents)
+      options = {}
+      options[:meta] = [pages: @documents.count/8.ceil]
+      render json: DocumentSerializer.new(@documents, options).serialized_json
     end
 
 
@@ -25,7 +27,7 @@ module V1
       document_data.close
       @document.qr_code.attach(
         io: qrcode_data.file,
-        filename: "#{SecureRandom.uuid}.jpeg"
+        filename: "#{SecureRandom.uuid}.png"
       )
       @document.qr_code_base64 = base64_qr
       @document.save
