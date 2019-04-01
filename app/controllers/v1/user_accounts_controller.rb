@@ -5,7 +5,8 @@ module V1
     has_scope :by_days
     has_scope :by_period, using: %i[started_at ended_at], type: :hash
 
-    before_action :admin?
+    skip_before_action :authorize_request, only: :update
+    before_action :admin?, except: :update
     before_action :set_user, only: [:show, :update, :destroy]
     before_action :set_host_for_local_storage
 

@@ -4,9 +4,9 @@ class User < ApplicationRecord
   has_one :account, dependent: :destroy
   accepts_nested_attributes_for :account, allow_destroy: true
 
-  scope :by_status, -> status { joins(:account).where("account.status = ?", status) }
-  scope :by_date, -> created_at { where(created_at: created_at) }
-  scope :by_period, -> started_at, ended_at { where(created_at: started_at..ended_at) }
+  scope :by_status, -> status { joins(:account).where("accounts.status = ?", status) }
+  scope :by_date, -> created_at { where(created_at: Date.parse(created_at)) }
+  scope :by_period, -> started_at, ended_at { where(created_at: Date.parse(started_at)..Date.parse(ended_at)) }
   scope :by_days, -> days { where(created_at: Date.today..days.to_i.days.from_now) }
 
   validates_presence_of :email, :password_digest
