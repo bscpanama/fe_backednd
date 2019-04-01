@@ -9,7 +9,7 @@ class Account < ApplicationRecord
   has_one_attached :avatar
   belongs_to :user
 
-  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..2.megabytes }
+  validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], size_range: 1..2.megabytes }
   validates_presence_of :plan_id
 
   before_create :set_expiration
