@@ -21,4 +21,12 @@ class Account < ApplicationRecord
   def avatar_url
     Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true) if avatar.attached?
   end
+
+  def avatar_base64
+    Base64Service.new(avatar.download)
+  end
+
+  def avatar_base64_data
+    "data:image/jpeg;base64, #{avatar_base64}"
+  end
 end

@@ -19,10 +19,10 @@ module V1
 
     def create
       new_password = SecureRandom.hex(10)
-      @user = User.create(user_params.merge({password: new_password, password_confirmation: new_password}))
-      ExpireAccountJob.set(wait_until: @user.account.expiration_date.noon).perform_later(@user)
-      UserMailer.new_account(@user, new_password).deliver_later
-      json_response(@user, :created)
+      user = User.create(user_params.merge({password: new_password, password_confirmation: new_password}))
+      ExpireAccountJob.set(wait_until: user.account.expiration_date.noon).perform_later(user)
+      UserMailer.new_account(user, new_password).deliver_later
+      json_response(user, :created)
     end
 
     def show
@@ -35,7 +35,7 @@ module V1
     # end
 
     def update
-      @user.update(user_params)
+      @user.update_attributes(user_params)
       head :no_content
     end
 
