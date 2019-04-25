@@ -42,7 +42,7 @@ module V1
     private
 
     def document_params
-      params.permit(:cufe, :qr_code, :documento_xml, :tipo_documento, :documento_relacionado, :razon_social, :ruc, :direccion_del_emisor, :cliente, :ruc_cedula_cliente, :direccion_cliente, :numero_factura, :serie, :fecha_de_emision, :suma, :descuento, :valor_pago, :forma_de_pago, :vuelto, :protocolo_de_autorizacion, :fecha_de_protocolo, items: [:codigo, :descripcion, :unid, :vlr_unit, :cantidad, :ITBMS, :vlr_item])
+      params.permit(:clave_de_acceso,:cufe, :qr_code, :documento_xml, :tipo_documento, :documento_relacionado, :razon_social, :ruc, :direccion_del_emisor, :cliente, :ruc_cedula_cliente, :direccion_cliente, :numero_factura, :serie, :fecha_de_emision, :suma, :descuento, :valor_pago, :forma_de_pago, :vuelto, :protocolo_de_autorizacion, :fecha_de_protocolo, items: [:codigo, :descripcion, :unid, :vlr_unit, :cantidad, :ITBMS, :vlr_item])
     end
 
     def set_document

@@ -202,23 +202,24 @@ CREATE TABLE public.documents (
     tipo_documento character varying,
     documento_relacionado character varying,
     razon_social character varying,
-    ruc integer,
+    ruc character varying,
     direccion_del_emisor character varying,
     cliente character varying,
     ruc_cedula_cliente character varying,
     direccion_cliente character varying,
-    numero_factura integer,
-    serie integer,
+    numero_factura character varying,
+    serie character varying,
     fecha_de_emision date,
-    suma double precision,
-    descuento double precision,
-    valor_pago double precision,
+    suma character varying,
+    descuento character varying,
+    valor_pago character varying,
     forma_de_pago character varying,
-    vuelto double precision,
-    protocolo_de_autorizacion bigint,
+    vuelto character varying,
+    protocolo_de_autorizacion character varying,
     fecha_de_protocolo timestamp without time zone,
     items json,
-    qr_code_base64 text
+    qr_code_base64 text,
+    clave_de_acceso character varying
 );
 
 
@@ -437,6 +438,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190316023259'),
 ('20190316044448'),
 ('20190320022023'),
-('20190328052327');
+('20190328052327'),
+('20190425013055'),
+('20190425015530');
 
 
