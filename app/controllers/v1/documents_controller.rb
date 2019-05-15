@@ -22,7 +22,7 @@ module V1
       @document = current_user.documents.create!(document_params.except(:documento_xml, :qr_code))
       @document.documento_xml.attach(
         io: document_data.file,
-        filename: "#{SecureRandom.uuid}.xml"
+        filename: "#{document_params[:cliente]}-#{document_params[:fecha_de_emision]}.xml"
       )
       document_data.close
       @document.qr_code.attach(

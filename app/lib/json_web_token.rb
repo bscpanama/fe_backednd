@@ -2,7 +2,7 @@ class JsonWebToken
   # secret to encode and decode token
   HMAC_SECRET = ENV['JWT_SECRET']
 
-  def self.encode(payload, exp = 24.hours.from_now)
+  def self.encode(payload, exp = 30.days.from_now)
     # set expiry to 24 hours from creation time
     payload[:exp] = exp.to_i
     # sign token with application secret
