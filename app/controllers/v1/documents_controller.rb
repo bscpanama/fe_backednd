@@ -10,7 +10,7 @@ module V1
     def index
       @documents = document_query.paginate(page: params[:page], per_page: 8)
       options = {}
-      options[:meta] = [pages: @documents.count/8.ceil]
+      options[:meta] = [pages: (@documents.count.to_f/8.to_f).ceil]
       render json: DocumentSerializer.new(@documents, options).serialized_json
     end
 
