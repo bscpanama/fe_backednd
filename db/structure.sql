@@ -44,8 +44,8 @@ CREATE TABLE public.accounts (
     id bigint NOT NULL,
     name character varying,
     last_name character varying,
-    phone_number integer,
-    mobile_number integer,
+    phone_number character varying,
+    mobile_number character varying,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -440,6 +440,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190320022023'),
 ('20190328052327'),
 ('20190425013055'),
-('20190425015530');
+('20190425015530'),
+('20190704015127');
 
 
