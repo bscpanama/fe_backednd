@@ -12,12 +12,6 @@ class Account < ApplicationRecord
   validates :avatar, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], size_range: 1..2.megabytes }
   validates_presence_of :plan_id
 
-  before_create :set_expiration
-
-  def set_expiration
-      self.expiration_date = PLAN[plan_id].days.from_now
-  end
-
   def avatar_url
     Rails.application.routes.url_helpers.rails_blob_url(avatar, only_path: true) if avatar.attached?
   end

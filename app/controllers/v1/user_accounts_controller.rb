@@ -13,14 +13,17 @@ module V1
     def index
       @users = user_account_query.paginate(page: params[:page], per_page: 8)
       options = {}
-      options[:meta] = [pages: @users.count/8.ceil]
+      options[:meta] = [pages: (@users.count.to_f/8.to_f).ceil]
       render json: UserSerializer.new(@users, options).serialized_json
     end
 
     def create
       new_password = SecureRandom.hex(10)
       user = User.create(user_params.merge({password: new_password, password_confirmation: new_password}))
-      ExpireAccountJob.set(wait_until: user.account.expiration_date.noon).perform_later(user)
+      account = user.account
+      account.expiration_date = Account::PLAN[user.account.plan_id].days.from_now
+      account.save
+      ExpireAccountJob.set(wait_until: account.expiration_date.noon).perform_later(user)
       UserMailer.new_account(user, new_password).deliver_later
       json_response(user, :created)
     end
