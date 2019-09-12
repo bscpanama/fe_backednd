@@ -17,7 +17,7 @@ class Account < ApplicationRecord
   end
 
   def avatar_base64
-    Base64Service.new(avatar.download)
+    Base64Service.new(avatar.download).file
   end
 
   def avatar_base64_data
