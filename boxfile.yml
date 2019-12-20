@@ -27,7 +27,11 @@ worker.main:
     - bundle exec sidekiq -L /app/log/sidekiq.log
 
   writable_dirs:
+    - tmp
     - log
+    - db
+    - /app/cache
+    - public
 
   log_watch:
     delayed: /app/log/sidekiq.log

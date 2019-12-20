@@ -90,6 +90,11 @@
 		text-align: center;
 	}
 
+        #client-logo img {
+          width: 6cm;
+          height: 6cm;
+        }
+
 	#client-info {
 	    display: inline-block;
 	    width: 6.58cm;
@@ -98,10 +103,11 @@
 	}
 
 	#f-phrase {
-		font-size: 9pt;
-		margin-top: 0.2cm;
-		margin-bottom: 0.5cm;
-		text-align: center;
+	  font-size: 10pt;
+	  margin-top: 0.2cm;
+	  margin-bottom: 0.2cm;
+	  text-align: center;
+	  font-weight: bold;
 	}
 
 	#e-data {
@@ -212,7 +218,7 @@
                           <%= data.user.account.avatar.attached? ? image_tag(data.user.account.avatar_base64_data) : "Espacio Para Logo de Empresa" %>
 	 		</div>
 	 		<div id="client-info">
-	 			<div id="f-phrase">Comprobante Impreso de Factura Electr&oacute;nica</div>
+                                <div id="f-phrase">Comprobante Auxiliar de Factura Electr&oacute;nica<br>Factura de Operaci&oacute;n Interna</div>
 	 			<div id="e-data">
                                   <span>Raz&oacute;n social del emisor: <%= data.razon_social %></span>
 	 				<span>RUC del Emisor: <%= data.ruc %></span>
@@ -237,6 +243,7 @@
 	 		<div id="extra">
 	 			<span>Consulte por la clave de acceso en http://fe.dgi.mef.pa/consulta:</span>
                                 <span><%= data.clave_de_acceso %></span>
+                                <span><strong>CUFE:</strong> <%= data.cufe %></span>
                                 <span>Protocolo de autorizaci&oacute;n: <%= data.protocolo_de_autorizacion %>, de <%= data.fecha_de_protocolo %> </span>
 	 		</div>
 	 	</div>
